@@ -10,9 +10,13 @@ import org.hibernate.cfg.Configuration;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import net.sf.ehcache.CacheManager;
+
 import static org.junit.Assert.assertNull;
 
 import java.util.Collection;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -170,6 +174,28 @@ public class AppTest
 		   session.getTransaction().commit();
 		   session.close();
 		   System.out.println(p.getInsurances());
+		   
+	   }
+	   
+	   @Test
+	   public void testHibernateSecondLevelCache() {
+		   testSave();
+		   Session session = sessionFactory.openSession();
+		   session.beginTransaction();
+		   Person person = session.get( Person.class, 1 );
+		   session.getTransaction().commit();
+		   session.close();
+		   assertNotNull(person);
+		   assertEquals(1,person.getId());
+		   
+		   Session session2 = sessionFactory.openSession();
+		   session2.beginTransaction();
+		   Person person2 = session2.get( Person.class, 1 );
+		   session2.getTransaction().commit();
+		   session2.close();
+		   
+		   List<CacheManager> cacheManager = CacheManager.ALL_CACHE_MANAGERS;
+		   assertEquals(1, cacheManager.size());
 		   
 	   }
    

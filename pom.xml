@@ -23,6 +23,14 @@
     <version>5.3.5.Final</version>
 </dependency>
 
+
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-ehcache</artifactId>
+    <version>5.3.5.Final</version>
+</dependency>
+
+
 		<dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
