@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-5.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-5.0.xsd">
+
+	
+
+
+
+<bean id="hibernateAnnotatedSessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="configLocation">  
+		<value>classpath:hibernate.cfg.xml</value>
+		</property>
+		
+		<property name="annotatedClasses">
+			<list>
+				<value>com.wai.hibernate</value>
+			</list>
+		</property>
+</bean>
+
+	
+	<bean id="personDAO" class="com.wai.daoimpl.PersonDaoImpl">
+		<property name="sessionFactory" ref="hibernateAnnotatedSessionFactory" />
+	</bean>
+</beans>
