@@ -10,7 +10,7 @@
 
 
 
-<bean id="hibernateAnnotatedSessionFactory"
+<!-- <bean id="hibernateAnnotatedSessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="configLocation">  
 		<value>classpath:hibernate.cfg.xml</value>
@@ -26,5 +26,5 @@
 	
 	<bean id="personDAO" class="com.wai.daoimpl.PersonDaoImpl">
 		<property name="sessionFactory" ref="hibernateAnnotatedSessionFactory" />
-	</bean>
+	</bean> -->
 </beans>
